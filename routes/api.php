@@ -11,4 +11,6 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get('data',[DemoController::class,'getData']);
-Route::get('devices',[DeviceController::class,'list']);
+// Route::get('devices',[DeviceController::class,'list']);
+// Route::get('devices/{slug}',[DeviceController::class,'listparams']);
+Route::get('devices/{slug?}',[DeviceController::class,'list']);
