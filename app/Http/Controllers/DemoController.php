@@ -10,4 +10,5 @@ class DemoController extends Controller
     function getData(){
         return ["name"=>"Triveni", "contact"=>"945949594596"];
       }
+
 }
