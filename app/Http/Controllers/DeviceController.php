@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Validator;
 use App\Models\device;
 
 class DeviceController extends Controller
@@ -72,7 +73,30 @@ class DeviceController extends Controller
        }
        else {
         return ["result"=>"Operation failed. Record Note found!"];
-       }
-       
+       }    
+  }
+
+  function testData(Request $request){
+    $rules = array(
+        "member_id"=>"required|min:1|max:3"
+    );
+    $validator =  Validator::make($request->all(), $rules);
+    if($validator->fails()){
+        // return $validator->errors();
+        return response()->json($validator->errors(),401);
+    }
+    else{
+     $device = new device;
+     $device->name = $request->name;
+     $device->member_id = $request->member_id;
+     $result = $device->save();
+
+     if($result){
+        return ["result"=> "Data has been saved"];
+     }
+     else{
+        return ["result"=>"Operation failed"];
+     }
+    }
   }
 }

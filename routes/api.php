@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DemoController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\MemberController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -29,3 +30,9 @@ Route::get('search/{string}', [DeviceController::class, 'search']);
 
 // this route for deleting the data 
 Route::delete('delete/{id}',[DeviceController::class, 'delete']);
+
+// applying validations in api
+Route::post('save',[DeviceController::class, 'testData']);
+
+// this route for all functions (api with resource)
+Route::apiResource('member',MemberController::class);
